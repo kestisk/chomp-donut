@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+# Chomp-a-Donut
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A virtual donut shop built as a React SPA. Browse a selection of donuts and give them a virtual chomp!
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + TypeScript
+- Vite (port 4000)
+- React Router 7 (`createBrowserRouter`)
+- Tailwind CSS v4
+- Vitest + Testing Library + MSW
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+App runs at [http://localhost:4000](http://localhost:4000)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Command            | Description                         |
+| ------------------ | ----------------------------------- |
+| `npm run dev`      | Start dev server on port 4000       |
+| `npm run build`    | TypeScript check + production build |
+| `npm run test`     | Run tests in watch mode             |
+| `npm run test:run` | Run tests once (CI)                 |
+| `npm run lint`     | ESLint                              |
+
+## Routes
+
+| Path            | Description                            |
+| --------------- | -------------------------------------- |
+| `/`             | Home page                              |
+| `/list`         | Donut listing with chomp functionality |
+| `/company/info` | Company information                    |
+
+## Features
+
+- Blue / Pink theme toggle (WCAG AAA contrast)
+- Donuts fetched over the network with error handling and retry
+- Chomp state persists on refresh via `sessionStorage`, clears on browser close
+- Total price of chomped donuts calculated in real time
+- Responsive layout
